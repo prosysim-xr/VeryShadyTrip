@@ -122,7 +122,13 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Value: 2
+    - _UVOffset: 0
+    - _UVOffsetX: 0
+    - _UVOffsetY: 0
+    - _UVScale: 1
+    - _UVXOffset: 0
+    - _UVYOffset: -0.5
+    - _Value: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
