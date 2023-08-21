@@ -17,7 +17,7 @@ Shader "Unlit/SimpleRGBBlend"{//This is probably unity's shader lab boiler plate
             //Mesh Data Structure
             struct appdata{
                 float4 vertex : POSITION;
-                //float2 uv : TEXCOORD0;//Setting Data stream UV map
+                float2 uv : TEXCOORD0;//Setting Data stream UV map
                 float3 normals : Normal;//Setting Data stream to narmal Vector data
                 //float3 someValue : TEXCOORD2;//Setting Data stream to narmal Vector data
             };
@@ -26,6 +26,7 @@ Shader "Unlit/SimpleRGBBlend"{//This is probably unity's shader lab boiler plate
             struct v2f{
                 float4 vertex : SV_POSITION;//clip space position
                 float3 normal : TEXCOORD0;
+                float2 uv : TEXCOORD1;
             };
 
 
@@ -46,6 +47,7 @@ Shader "Unlit/SimpleRGBBlend"{//This is probably unity's shader lab boiler plate
                 //o.normal = mul(v.normals, (float3x3)unity_WorldToObject); 
                 o.normal = mul((float3x3)unity_ObjectToWorld, v.normals); 
                 o.normal = mul((float3x3)UNITY_MATRIX_M, v.normals); //All these are equivalent.( Model Matrix)
+                o.uv = v.uv;
                 return o;
             }
             //Interpolators goes into fragment shader
@@ -56,6 +58,9 @@ Shader "Unlit/SimpleRGBBlend"{//This is probably unity's shader lab boiler plate
 
                 //swizling
                 //_Color = _Color.xxxx; //grey scale
+
+                _Color = float4(i.uv.yx,0, 1);
+
                 return _Color;
             }
 
